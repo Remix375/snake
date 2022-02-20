@@ -37,13 +37,15 @@ class Plateau:
                 else:
                     pygame.draw.rect(fenetre, "#008c2c", square)
 
-                for placement in self.snake.body:
-                    if (vertical, horizontal) == placement[0]:
-                        pygame.draw.circle(fenetre, "black", (pos_x + self.size_x//2, pos_y + self.size_y//2), self.size_x//2)
+                if (vertical, horizontal) in self.snake:
+                    pygame.draw.circle(fenetre, "black", (pos_x + self.size_x//2, pos_y + self.size_y//2), self.size_x//2)
 
     def change_direction(self, direction):
         self.snake.turn(direction)
 
     def move(self, fenetre):
         self.snake.move()
+
+    def grow(self):
+        self.snake.grow()
 
