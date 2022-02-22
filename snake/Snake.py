@@ -9,16 +9,20 @@ class Snake:
 
 
     def grow(self):
-        self.body.append(self.body[-1])
+        direction = self.body[-1].direction
+        position = (self.body[-1].position[0] - direction[0], self.body[-1].position[1] - direction[1])
+        self.body.append(Snake_Part(position, direction))
+        print(self.body)
 
     def turn(self, direction):
         self.body[0].turn(direction)
  
     def move(self):
+        
+        for part in range(len(self.body)-1, 0, -1):
+            self.body[part].position = self.body[part-1].position
+            self.body[part].direction = self.body[part-1].direction
         self.body[0].update_position()
-
-        for part in range(1, len(self.body)-1):
-            self.body[part] = self.body[part-1]
 
     def __contains__(self, position):
         for element in self.body:

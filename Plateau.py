@@ -47,5 +47,6 @@ class Plateau:
         self.snake.move()
 
     def grow(self):
+        print("|")
         self.snake.grow()
 

@@ -14,5 +14,8 @@ class Snake_Part:
     def turn(self, direction):
         self.direction = direction
 
+    
+    def __repr__(self):
+        return str(self.position) + str(self.direction)
     def __str__(self):
         return str(self.position) + str(self.direction)

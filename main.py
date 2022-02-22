@@ -38,10 +38,11 @@ while continuer:
             if event.key == pygame.K_DOWN:
                 board.change_direction((1, 0))
 
-            if event.key == pygame.MOUSEBUTTONDOWN:
+            if event.key == pygame.K_SPACE:
+                print("DFD")
                 board.grow()
 
-    if pygame.time.get_ticks() - last_tick > 100:
+    if pygame.time.get_ticks() - last_tick > 500:
         board.move(fenetre)
         last_tick = pygame.time.get_ticks()
 
