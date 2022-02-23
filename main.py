@@ -41,7 +41,7 @@ while continuer:
             if event.key == pygame.K_SPACE:
                 board.grow()
 
-    if pygame.time.get_ticks() - last_tick > 200:
+    if pygame.time.get_ticks() - last_tick > 100:
         board.move(fenetre)
         last_tick = pygame.time.get_ticks()
 

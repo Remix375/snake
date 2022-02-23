@@ -6,7 +6,10 @@ from snake.Snake_Part import Snake_Part
 class Snake:
     def __init__(self):
         self.body = [Snake_Part((4, 4), (0, -1))]
+        self.size = 0
 
+    def position_head(self):
+        return self.body[0].position
 
     def grow(self):
         #grow the snake by 1 in length
@@ -15,6 +18,7 @@ class Snake:
         #position will be just behind the last current element
         position = (self.body[-1].position[0] - direction[0], self.body[-1].position[1] - direction[1])
         self.body.append(Snake_Part(position, direction))
+        self.size += 1
 
     def turn(self, direction):
         #turn the head of the snake

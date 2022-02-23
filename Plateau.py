@@ -1,10 +1,12 @@
 import pygame
 
+import random
+
 from snake.Snake import Snake
 
 
 class Plateau:
-    def __init__(self, fenetre, size=20):
+    def __init__(self, fenetre, size=9):
         #directions: (0, -1) -> left | (0, 1) -> right | (1, 0) -> down | (-1, 0) -> up
         #start facing left
         self.direction = (-1, 0)
@@ -19,7 +21,11 @@ class Plateau:
         self.size_y = (0.8 * self.y_window_size) // size
 
 
+        self.position_cherry = (random.randint(0, self.plateau_size-1), random.randint(0, self.plateau_size-1))
+
         self.snake = Snake()
+
+        self.can_turn = True
 
 
     def draw(self, fenetre):
@@ -45,15 +51,35 @@ class Plateau:
                 if (vertical, horizontal) in self.snake:
                     pygame.draw.circle(fenetre, "black", (pos_x + self.size_x//2, pos_y + self.size_y//2), self.size_x//2)
 
+                #if snake on cherry:
+                #grow and relocate cherry
+                if self.position_cherry == self.snake.position_head():
+                    self.position_cherry = (random.randint(0, self.plateau_size-1), random.randint(0, self.plateau_size-1))
+                    self.snake.grow()
+
+                #red circle for the cherry just cause
+                if (vertical, horizontal) == self.position_cherry:
+                    pygame.draw.circle(fenetre, "red", (pos_x + self.size_x//2, pos_y + self.size_y//2), self.size_x//3)
+
+                
+
     #the snake turns
     def change_direction(self, direction):
-        self.snake.turn(direction)
+        #only change one time of direction until the snake moves
+        if self.can_turn:
+            self.snake.turn(direction)
+        self.can_turn = False
 
     #the snake moves
     def move(self, fenetre):
         self.snake.move()
+        self.can_turn = True
 
-    #the snake grows
-    def grow(self):
-        self.snake.grow()
+
+
+
+
+
+
+
 
