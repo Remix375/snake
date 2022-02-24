@@ -5,8 +5,13 @@ from snake.Snake_Part import Snake_Part
 
 class Snake:
     def __init__(self):
-        self.body = [Snake_Part((4, 4), (0, -1))]
+        self.body = [Snake_Part((4, 4), (0, -1), True)]
         self.size = 0
+
+
+    def draw(self, pos):
+        for piece in self.body:
+            piece.draw(pos)
 
     def position_head(self):
         return self.body[0].position

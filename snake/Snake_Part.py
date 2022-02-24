@@ -1,12 +1,19 @@
-
+import pygame
 
 
 class Snake_Part:
-    def __init__(self, position, direction):
+    def __init__(self, position, direction, head = False):
 
         self.position = position
         self.direction = direction
 
+        self.head = head
+
+        self.image = pygame.image.load("./snake/images/body_straight.png")
+
+
+    def draw(self, fenetre, pos):
+        fenetre.blit
 
     def update_position(self):
         #udate position

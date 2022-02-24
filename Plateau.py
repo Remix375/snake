@@ -34,7 +34,7 @@ class Plateau:
             for horizontal in range(self.plateau_size):
                 
                 #get x and y position in pixels
-                pos_x = self.size_x * (horizontal + 1)
+                pos_x = self.size_x * (horizontal)
                 pos_y = self.size_y * (vertical + 1)
 
                 #create a square
