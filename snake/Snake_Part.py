@@ -5,11 +5,15 @@ class Snake_Part:
     def __init__(self, position, direction, head = False):
 
         self.position = position
-        self.direction = direction
+        self.direction_start = direction
+        self.direction_end = direction
+
 
         self.head = head
 
         self.image = pygame.image.load("./snake/images/body_straight.png")
+
+        self.percentage = 0
 
 
     def draw(self, fenetre, pos):
@@ -18,13 +22,13 @@ class Snake_Part:
     def update_position(self):
         #udate position
         #basically only usefull for the head
-        self.position = (self.position[0] + self.direction[0], self.position[1] + self.direction[1])
+        self.position = (self.position[0] + self.direction_end[0], self.position[1] + self.direction_end[1])
 
     def turn(self, direction):
-        self.direction = direction
+        self.direction_end = direction
 
     
     def __repr__(self):
-        return str(self.position) + str(self.direction)
+        return str(self.position) + str(self.direction_end)
     def __str__(self):
-        return str(self.position) + str(self.direction)
+        return str(self.position) + str(self.direction_end)

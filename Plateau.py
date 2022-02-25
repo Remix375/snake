@@ -6,7 +6,7 @@ from snake.Snake import Snake
 
 
 class Plateau:
-    def __init__(self, fenetre, size=9):
+    def __init__(self, fenetre, tick_time, size=9):
         #directions: (0, -1) -> left | (0, 1) -> right | (1, 0) -> down | (-1, 0) -> up
         #start facing left
         self.direction = (-1, 0)
@@ -20,6 +20,8 @@ class Plateau:
         self.size_x = (0.8 * self.x_window_size) // size
         self.size_y = (0.8 * self.y_window_size) // size
 
+        #time between consideration of action, turning
+        self.tick_time = tick_time
 
         self.position_cherry = (random.randint(0, self.plateau_size-1), random.randint(0, self.plateau_size-1))
 
@@ -28,7 +30,7 @@ class Plateau:
         self.can_turn = True
 
 
-    def draw(self, fenetre):
+    def draw(self, fenetre, tick):
         #iterate to create board
         for vertical in range(self.plateau_size):
             for horizontal in range(self.plateau_size):

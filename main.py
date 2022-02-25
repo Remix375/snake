@@ -12,18 +12,22 @@ background = (100, 135, 110)
 clock = pygame.time.Clock()
 last_tick = 0
 
-board = Plateau(fenetre)
+
+tick_time = 100
+board = Plateau(fenetre, tick_time)
 
 continuer = True
 
 Play_Button = Button("blue", 500, 500, 200, 200, "play")
 playing = False
 
+
+
 while continuer:
     fenetre.fill(background)
 
     if playing:
-        board.draw(fenetre)
+        board.draw(fenetre, pygame.time.get_ticks() - last_tick)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 continuer = False
@@ -45,7 +49,7 @@ while continuer:
                     board.grow()
 
                     
-        if pygame.time.get_ticks() - last_tick > 100:
+        if pygame.time.get_ticks() - last_tick > tick_time:
             board.move(fenetre)
             last_tick = pygame.time.get_ticks()
 
