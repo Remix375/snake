@@ -11,8 +11,6 @@ class Snake_Part:
 
         self.head = head
 
-        self.image = pygame.image.load("./snake/images/body_straight.png")
-
         self.percentage = 0
 
 
