@@ -6,7 +6,7 @@ from snake.Snake import Snake
 
 
 class Plateau:
-    def __init__(self, fenetre, tick_time, size=9):
+    def __init__(self, fenetre, size=9):
         #directions: (0, -1) -> left | (0, 1) -> right | (1, 0) -> down | (-1, 0) -> up
         #start facing left
         self.direction = (-1, 0)
@@ -16,12 +16,19 @@ class Plateau:
         self.x_window_size = fenetre.get_size()[0]
         self.y_window_size = fenetre.get_size()[1]
 
-        #size of a case on board
-        self.size_x = (0.8 * self.x_window_size) // size
-        self.size_y = (0.8 * self.y_window_size) // size
+        #size of board
+        self.board_size_x = 0.8 * self.x_window_size
+        self.board_size_y = 0.8 * self.y_window_size
 
-        #time between consideration of action, turning
-        self.tick_time = tick_time
+        #size of border of game
+        self.border_x = 0.1 * self.x_window_size
+        self.border_y = 0.1 * self.y_window_size
+
+        #size of case on board
+        self.size_x = self.board_size_x // size
+        self.size_y = self.board_size_y // size
+
+        
 
         self.position_cherry = (random.randint(0, self.plateau_size-1), random.randint(0, self.plateau_size-1))
 
@@ -36,8 +43,8 @@ class Plateau:
             for horizontal in range(self.plateau_size):
                 
                 #get x and y position in pixels
-                pos_x = self.size_x * (horizontal)
-                pos_y = self.size_y * (vertical + 1)
+                pos_x = self.size_x * (horizontal) + self.border_x
+                pos_y = self.size_y * (vertical) + self.border_y
 
                 #create a square
                 square = pygame.Rect(pos_x, pos_y, self.size_x, self.size_y)

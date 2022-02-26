@@ -5,7 +5,7 @@ import time
 from Plateau import Plateau
 from Menu.Button import Button
 
-hauteur, largeur = 1000, 1000
+hauteur, largeur = 1000, 500
 fenetre = pygame.display.set_mode((hauteur, largeur))
 background = (100, 135, 110)
 
@@ -14,11 +14,11 @@ last_tick = 0
 
 
 tick_time = 100
-board = Plateau(fenetre, tick_time)
+board = Plateau(fenetre)
 
 continuer = True
 
-Play_Button = Button("blue", 500, 500, 200, 200, "play")
+Play_Button = Button("blue", fenetre, "play")
 playing = False
 
 
@@ -27,7 +27,7 @@ while continuer:
     fenetre.fill(background)
 
     if playing:
-        board.draw(fenetre, pygame.time.get_ticks() - last_tick)
+        board.draw(fenetre, (pygame.time.get_ticks() - last_tick) / tick_time)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 continuer = False
@@ -70,7 +70,7 @@ while continuer:
 
 
     pygame.display.update()
-    clock.tick(60)
+    clock.tick(100)
 
 
 pygame.display.quit()

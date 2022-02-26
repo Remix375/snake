@@ -2,12 +2,13 @@ import pygame
 pygame.init()
 
 class Button():
-    def __init__(self, color, x,y,width,height, text=''):
+    def __init__(self, color, fenetre, text=''):
         self.color = color
-        self.x = x
-        self.y = y
-        self.width = width
-        self.height = height
+        self.width = fenetre.get_size()[0] // 4
+        self.height = fenetre.get_size()[0] // 4
+
+        self.x = fenetre.get_size()[0] // 2 - self.width // 2
+        self.y = fenetre.get_size()[1] // 2 - self.height // 2
         self.text = text
 
         self.font = font = pygame.font.SysFont("comicsans", 60)

@@ -9,9 +9,9 @@ class Snake:
         self.size = 0
 
 
-    def draw(self, pos):
+    def draw(self, board, case):
         for piece in self.body:
-            piece.draw(pos)
+            piece.draw(board, case)
 
     def position_head(self):
         return self.body[0].position
@@ -32,7 +32,8 @@ class Snake:
             self.body[0].turn(direction)
  
     def move(self):
-        #each part takes properties of part before it
+        #last part goes poof
+        #new part one case ahead
         #having a class for each part seams useless but f*ck it maybe it will be useful
         self.body.insert(0, Snake_Part((self.body[0].position[0] + self.body[0].direction_end[0], self.body[0].position[1] + self.body[0].direction_end[1]), self.body[0].direction_end, True))
         self.body.pop()
