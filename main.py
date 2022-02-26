@@ -5,7 +5,7 @@ import time
 from Plateau import Plateau
 from Menu.Button import Button
 
-hauteur, largeur = 1000, 1000
+hauteur, largeur = 500, 500
 fenetre = pygame.display.set_mode((hauteur, largeur))
 background = (100, 135, 110)
 
@@ -13,7 +13,7 @@ clock = pygame.time.Clock()
 last_tick = 0
 
 
-tick_time = 100
+tick_time = 300
 board = Plateau(fenetre)
 
 continuer = True
@@ -22,7 +22,7 @@ Play_Button = Button("blue", fenetre, "play")
 playing = False
 
 
-
+print("heu")
 while continuer:
     fenetre.fill(background)
 
