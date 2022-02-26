@@ -47,4 +47,17 @@ class Snake:
             if element.position == position:
                 return True
         return False
+
+
+    def is_dead(self, max_pos):
+        #if head outside of board then dead
+        head = self.body[0]
+        if head.position[0] > max_pos-1 or head.position[0] < 0 or head.position[1] > max_pos-1 or head.position[1] < 0:
+            return False
+        for part in self.body[1:]:
+            if part.position == head.position:
+                return False
+        return True
+
+
         

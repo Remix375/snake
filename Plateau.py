@@ -7,10 +7,6 @@ from snake.Snake import Snake
 
 class Plateau:
     def __init__(self, fenetre, size=9):
-        #directions: (0, -1) -> left | (0, 1) -> right | (1, 0) -> down | (-1, 0) -> up
-        #start facing left
-        self.direction = (-1, 0)
-
         self.plateau_size = size
 
         self.x_window_size = fenetre.get_size()[0]
@@ -83,6 +79,18 @@ class Plateau:
     def move(self, fenetre):
         self.snake.move()
         self.can_turn = True
+        return self.check_if_dead()
+
+
+
+    def check_if_dead(self):
+        return self.snake.is_dead(self.plateau_size)
+
+
+    def reinitialise(self):
+        self.snake = Snake()
+        self.can_turn = True
+        self.position_cherry = (random.randint(0, self.plateau_size-1), random.randint(0, self.plateau_size-1))
 
 
 
