@@ -13,8 +13,8 @@ class Snake_Part:
     def draw(self, fenetre, size, border, percentage = 1, head = False):
         print(size)
         print(percentage)
-        pos_y = border[0] + (size[0] * self.position[0])
-        pos_x = border[1] + (size[1] * self.position[1])
+
+
         size_x = 0
         size_y = 0
         if self.direction_end[1] == 0:
@@ -23,6 +23,22 @@ class Snake_Part:
         elif self.direction_end[0] == 0:
             size_y = 0.8 * size[0]
             size_x = percentage * size[1]
+
+
+        pos_y = border[0] + (size[0] * (self.position[0]))
+        pos_x = border[1] + (size[1] * self.position[1])
+
+        if head:
+            if self.direction_end[0] == -1:
+                pos_y = border[0] + (size[0] * (self.position[0]+1)) - size_y
+            if self.direction_end[1] == -1:
+                pos_x = border[1] + (size[1] * (self.position[1]+1)) - size_x
+        else:
+            if self.direction_end[0] == 1:
+                pos_y = border[0] + (size[0] * (self.position[0]+1)) - size_y
+            if self.direction_end[1] == 1:
+                pos_x = border[1] + (size[1] * (self.position[1]+1)) - size_x
+
 
         rectangle = pygame.Rect(pos_x, pos_y, size_x, size_y)
         pygame.draw.rect(fenetre, "black", rectangle)
