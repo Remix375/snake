@@ -5,13 +5,15 @@ from snake.Snake_Part import Snake_Part
 
 class Snake:
     def __init__(self):
-        self.body = [Snake_Part((4, 4), (0, -1), True)]
+        self.body = [Snake_Part((4, 4), (0, -1))]
         self.size = 0
 
 
-    def draw(self, board, case):
-        for piece in self.body:
-            piece.draw(board, case)
+    def draw(self, fenetre, size, border, percentage):
+        self.body[0].draw(fenetre, size, border, percentage)
+        #self.body[-1].draw(fenetre, size, border, 1-percentage)
+        #for piece in self.body[1:-1]:
+            #piece.draw(fenetre, size, border)
 
     def position_head(self):
         return self.body[0].position
@@ -35,7 +37,7 @@ class Snake:
         #last part goes poof
         #new part one case ahead
         #having a class for each part seams useless but f*ck it maybe it will be useful
-        self.body.insert(0, Snake_Part((self.body[0].position[0] + self.body[0].direction_end[0], self.body[0].position[1] + self.body[0].direction_end[1]), self.body[0].direction_end, True))
+        self.body.insert(0, Snake_Part((self.body[0].position[0] + self.body[0].direction_end[0], self.body[0].position[1] + self.body[0].direction_end[1]), self.body[0].direction_end))
         self.body.pop()
         
 
@@ -59,5 +61,12 @@ class Snake:
                 return False
         return True
 
+    def __str__(self) -> str:
+        string = ""
+        for k in self.body:
+            string += str(k)
+
+            string += " "
+        return string
 
         
