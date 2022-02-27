@@ -10,10 +10,10 @@ class Snake:
 
 
     def draw(self, fenetre, size, border, percentage):
-        self.body[0].draw(fenetre, size, border, percentage)
-        #self.body[-1].draw(fenetre, size, border, 1-percentage)
-        #for piece in self.body[1:-1]:
-            #piece.draw(fenetre, size, border)
+        self.body[0].draw(fenetre, size, border, percentage, head = True)
+        self.body[-1].draw(fenetre, size, border, 1-percentage)
+        for piece in self.body[1:-1]:
+            piece.draw(fenetre, size, border)
 
     def position_head(self):
         return self.body[0].position
