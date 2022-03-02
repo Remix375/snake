@@ -5,7 +5,7 @@ from snake.Snake_Part import Snake_Part
 
 class Snake:
     def __init__(self):
-        self.body = [Snake_Part((4, 4), (0, -1))]
+        self.body = [Snake_Part((4, 4), (0, -1)), Snake_Part((4,5), (0,-1))]
         self.size = 0
 
 

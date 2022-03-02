@@ -11,7 +11,7 @@ class Button():
         self.y = fenetre.get_size()[1] // 2 - self.height // 2
         self.text = text
 
-        self.font = font = pygame.font.SysFont("comicsans", 60)
+        self.font = pygame.font.SysFont("comicsans", 60)
 
     def draw(self,fenetre,outline=None):
         #Call this method to draw the button on the screen

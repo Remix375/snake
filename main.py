@@ -3,7 +3,7 @@ import time
 
 
 from Plateau import Plateau
-from Menu.Button import Button
+from UI.Button import Button
 
 hauteur, largeur = 500, 500
 fenetre = pygame.display.set_mode((hauteur, largeur))

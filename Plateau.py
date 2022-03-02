@@ -3,7 +3,7 @@ import pygame
 import random
 
 from snake.Snake import Snake
-
+from UI.Score import Score
 
 class Plateau:
     def __init__(self, fenetre, size=9):
@@ -32,6 +32,8 @@ class Plateau:
 
         self.can_turn = True
 
+        self.score = Score((1,1))
+
 
     def draw(self, fenetre, tick):
         #iterate to create board
@@ -57,8 +59,9 @@ class Plateau:
                     #pygame.draw.circle(fenetre, "black", (pos_x + self.size_x//2, pos_y + self.size_y//2), self.size_x//2)
 
                 #if snake on cherry:
-                #grow and relocate cherry
+                #grow and relocate cherry and add to score
                 if self.position_cherry == self.snake.position_head():
+                    self.score.add_score()
                     self.position_cherry = (random.randint(0, self.plateau_size-1), random.randint(0, self.plateau_size-1))
                     self.snake.grow()
 
@@ -67,7 +70,7 @@ class Plateau:
                     pygame.draw.circle(fenetre, "red", (pos_x + self.size_x//2, pos_y + self.size_y//2), self.size_x//3)
         
         self.snake.draw(fenetre, (self.size_y, self.size_x), (self.border_y, self.border_x), tick)
-                
+        self.score.draw(fenetre)  
 
     #the snake turns
     def change_direction(self, direction):
