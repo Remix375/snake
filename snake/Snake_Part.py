@@ -11,6 +11,121 @@ class Snake_Part:
 
     #drawing the part of the snake
     def draw(self, fenetre, size, border, percentage = 1, head = False):
+        #setting percentages of start and end
+        #we draw them seperately for turns
+        percentage_start, percentage_end = 0, 0
+        if percentage >= 0.5:
+            percentage_start = 1
+            percentage_end = (percentage - 0.5) * 2
+        else:
+            percentage_start = percentage * 2
+            percentage_end = 0
+            
+
+
+        #draw first part of snake
+        #positions and sizes of part of snake to draw
+        pos_x_start = 0
+        pos_y_start = 0
+        size_x_start = 0
+        size_y_start = 0
+
+        #going down
+        if self.direction_start == (1, 0):
+            pos_y_start = border[0] + self.position[0] * size[0]
+            pos_x_start = border[1] + self.position[1] * size[1] + 0.1 * size[1]
+
+            size_y_start = percentage_start * (size[0] // 2)
+            size_x_start = 0.8 * size[1]
+
+        #going right
+        if self.direction_start == (0, 1):
+            pos_y_start = border[0] + self.position[0] * size[0] + 0.1 * size[0]
+            pos_x_start = border[1] + self.position[1] * size[1]
+
+            size_y_start = 0.8 * size[0]
+            size_x_start = percentage_start * (size[1] // 2)
+
+        #going up
+        if self.direction_start == (-1, 0):
+            pos_y_start = border[0] + self.position[0] * size[0] + (1 + (1 - percentage_start)) * (size[0] // 2)
+            pos_x_start = border[1] + self.position[1] * size[1] + 0.1 * size[1]
+
+            size_y_start = percentage_start * (size[0] // 2)
+            size_x_start = 0.8 * size[1]
+
+        #going left
+        if self.direction_start == (0, -1):
+            pos_y_start = border[0] + self.position[0] * size[0] + 0.1 * size[0]
+            pos_x_start = border[1] + self.position[1] * size[1] + (1 + (1 - percentage_start)) * (size[1] // 2)
+
+            size_y_start = 0.8 * size[0]
+            size_x_start = percentage_start * (size[1] // 2)
+            
+
+
+        rectangle_start = pygame.Rect(pos_x_start, pos_y_start, size_x_start, size_y_start)
+        pygame.draw.rect(fenetre, "black", rectangle_start)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        """
+        #if the part to draw is the head of the snake
+        #draw from right position to simulate movement
+        #+1 at the end to avoid gap
+        if head:
+            if self.direction_end[0] == -1:
+                pos_y = border[0] + (size[0] * (self.position[0] + 1)) - size_y + 1
+            if self.direction_end[1] == -1:
+                pos_x = border[1] + (size[1] * (self.position[1]+1)) - size_x + 1
+        #if the part isn't the head
+        #for tail
+        else:
+            if self.direction_end[0] == 1:
+                pos_y = border[0] + (size[0] * (self.position[0]+1)) - size_y + 1
+            if self.direction_end[1] == 1:
+                pos_x = border[1] + (size[1] * (self.position[1]+1)) - size_x + 1
+
+        #draw in the middle of square
+        if self.direction_end[1] == 0:
+            pos_x += 0.1 * size[0]                   
+        elif self.direction_end[0] == 0:
+            pos_y += 0.1 * size[1] 
+        """
+
+
+
+
+
+
+
+
+
+        """
         #size
         size_x = 0
         size_y = 0
@@ -54,6 +169,9 @@ class Snake_Part:
 
         rectangle = pygame.Rect(pos_x, pos_y, size_x, size_y)
         pygame.draw.rect(fenetre, "black", rectangle)
+        """
+
+
 
     def turn(self, direction):
         self.direction_end = direction

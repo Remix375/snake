@@ -4,9 +4,11 @@ from snake.Snake_Part import Snake_Part
 
 
 class Snake:
-    def __init__(self):
+    def __init__(self, thickness = 0.8):
         self.body = [Snake_Part((4, 4), (0, -1)), Snake_Part((4,5), (0,-1))]
         self.size = 0
+
+        self.thickness = thickness
 
 
     def draw(self, fenetre, size, border, percentage):
