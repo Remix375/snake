@@ -22,7 +22,6 @@ Play_Button = Button("blue", fenetre, "play")
 playing = False
 
 
-print("heu")
 while continuer:
     fenetre.fill(background)
 

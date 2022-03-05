@@ -53,23 +53,29 @@ class Plateau:
                 else:
                     pygame.draw.rect(fenetre, "#008c2c", square)
 
-                #if snake on the case: draw a dot
-                #will change no worries
-                #if (vertical, horizontal) in self.snake:
-                    #pygame.draw.circle(fenetre, "black", (pos_x + self.size_x//2, pos_y + self.size_y//2), self.size_x//2)
 
                 #if snake on cherry:
                 #grow and relocate cherry and add to score
                 if self.position_cherry == self.snake.position_head():
+                    #add one to score
                     self.score.add_score()
-                    self.position_cherry = (random.randint(0, self.plateau_size-1), random.randint(0, self.plateau_size-1))
+                    #grow the snake
                     self.snake.grow()
+
+                    possible = []
+                    for i in range(self.plateau_size):
+                        for j in range(self.plateau_size):
+                            if (i, j) not in self.snake:
+                                possible.append((i, j))
+                    self.position_cherry = possible[random.randint(0, len(possible)-1)]
 
                 #red circle for the cherry just cause
                 if (vertical, horizontal) == self.position_cherry:
                     pygame.draw.circle(fenetre, "red", (pos_x + self.size_x//2, pos_y + self.size_y//2), self.size_x//3)
         
+        #draw snake
         self.snake.draw(fenetre, (self.size_y, self.size_x), (self.border_y, self.border_x), tick)
+        #draw score
         self.score.draw(fenetre)  
 
     #the snake turns
@@ -78,7 +84,7 @@ class Plateau:
         if self.can_turn:
             self.snake.turn(direction)
         self.can_turn = False
-        print(self.snake)
+
 
     #the snake moves
     def move(self, fenetre):
