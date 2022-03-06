@@ -13,7 +13,7 @@ clock = pygame.time.Clock()
 last_tick = 0
 
 
-tick_time = 300
+tick_time = 1000
 board = Plateau(fenetre)
 
 continuer = True
