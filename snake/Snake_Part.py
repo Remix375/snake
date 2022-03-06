@@ -25,6 +25,8 @@ class Snake_Part:
             percentage_end = 0
 
 
+        if tail:
+            percentage_end, percentage_start = percentage_start, percentage_end
 
 
         #draw first part of snake
@@ -43,7 +45,7 @@ class Snake_Part:
             size_x_start = 0.8 * size[1]
 
             if tail:
-                pos_y_start += (2 - percentage_start) * (size[0]//2)
+                pos_y_start += (1 - percentage_start) * (size[0]//2)
 
 
         #going right
@@ -55,7 +57,7 @@ class Snake_Part:
             size_x_start = percentage_start * (size[1] // 2) + 1
 
             if tail:
-                pos_x_start += (2 - percentage_start) * (size[1]//2)
+                pos_x_start += (1 - percentage_start) * (size[1]//2)
 
 
         #going up
@@ -67,7 +69,7 @@ class Snake_Part:
             size_x_start = 0.8 * size[1]
 
             if tail:
-                pos_y_start -= (2 - percentage_start) * (size[0]//2)
+                pos_y_start -= (1 - percentage_start) * (size[0]//2)
 
         #going left
         if self.direction_start == (0, -1):
@@ -78,12 +80,11 @@ class Snake_Part:
             size_x_start = percentage_start * (size[1] // 2) + 1
 
             if tail:
-                pos_x_start -= (2 - percentage_start) * (size[1]//2)
+                pos_x_start -= (1 - percentage_start) * (size[1]//2)
             
 
 
-        rectangle_start = pygame.Rect(pos_x_start, pos_y_start, size_x_start, size_y_start)
-        pygame.draw.rect(fenetre, "black", rectangle_start)
+
 
 
 
@@ -106,7 +107,7 @@ class Snake_Part:
             size_x_end = 0.8 * size[1]
 
             if tail:
-                pos_y_end -= percentage_end * size[0] // 2
+                pos_y_end += (1-percentage_end) * (size[0] // 2)
 
         #going right
         if self.direction_end == (0, 1):
@@ -117,7 +118,7 @@ class Snake_Part:
             size_x_end = percentage_end * (size[1] // 2) + 1
 
             if tail:
-                pos_x_end -= percentage_end * size[1] // 2
+                pos_x_end += (1-percentage_end) * (size[1] // 2)
 
 
         #going up
@@ -129,7 +130,9 @@ class Snake_Part:
             size_x_end = 0.8 * size[1]
 
             if tail:
-                pos_y_end += percentage_end * size[0] // 2
+                pos_y_end -= (1-percentage_end) * size[0] // 2
+
+
 
         #going left
         if self.direction_end == (0, -1):
@@ -140,11 +143,20 @@ class Snake_Part:
             size_x_end = percentage_end * (size[1] // 2) + 1
 
             if tail:
-                pos_x_end += percentage_end * size[1] // 2
+                pos_x_end -= (1-percentage_end) * size[1] // 2
 
-        if percentage > 0.5:
+        if not (tail and percentage < 0.5):
+            #draw start
+            rectangle_start = pygame.Rect(pos_x_start, pos_y_start, size_x_start, size_y_start)
+            pygame.draw.rect(fenetre, "black", rectangle_start)
+
+        if not (not tail and percentage < 0.5):
+            #draw end if exists
             rectangle_end = pygame.Rect(pos_x_end, pos_y_end, size_x_end, size_y_end)
             pygame.draw.rect(fenetre, "black", rectangle_end)
+
+
+
 
 
 
