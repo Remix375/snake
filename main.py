@@ -5,7 +5,10 @@ import time
 from Plateau import Plateau
 from UI.Button import Button
 
-hauteur, largeur = 500, 500
+hauteur, largeur = 700, 700
+
+#fullscreen
+#fenetre = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 fenetre = pygame.display.set_mode((hauteur, largeur))
 background = (100, 135, 110)
 
@@ -32,6 +35,8 @@ while continuer:
                 continuer = False
 
             if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_1:
+                    continuer = False
                 if event.key == pygame.K_LEFT:
                     board.change_direction((0, -1))
 

@@ -9,8 +9,8 @@ class Plateau:
     def __init__(self, fenetre, size=9):
         self.plateau_size = size
 
-        self.x_window_size = fenetre.get_size()[0]
-        self.y_window_size = fenetre.get_size()[1]
+        self.x_window_size = fenetre.get_size()[0] if fenetre.get_size()[0] > fenetre.get_size()[1] else fenetre.get_size()[1]
+        self.y_window_size = self.x_window_size
 
         #size of board
         self.board_size_x = 0.8 * self.x_window_size
